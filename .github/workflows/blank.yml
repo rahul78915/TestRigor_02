@@ -42,20 +42,17 @@ jobs:
      echo "==================================="
      echo " Checking TestRigor retest"
      echo "==================================="
-    response=$(curl -i -o - -s -X GET 'https://api.testrigor.com/api/v1/apps/ZkQDbtSXaP5Nair2n/status' -H 'auth-token:80b689b2-bc62-4eb8-a2a6-b7fc6c1cce52' -H 'Accept: application/json')
+    response=$(curl -i -o - -s -X GET 'https://api.testrigor.com/api/v1/apps/ZkQDbtSXaP5Nair2n/status' -H 'auth-token:80b689b2-bc62-4eb8-a2a6-b7fc6c1cce52' -H 'Accept:application/json')
     code=$(echo "$response" | grep HTTP |  awk '{print $2}')
    body=$(echo "$response" | grep status)
-   echo "Status code: " $code
-   echo "Response: " $body
+   echo "Status code:"$code
+   echo "Response:"$body
    case $code in
     4*|5*)
-      # 400 or 500 errors
-      echo "Error calling API"
-      exit 1
-      ;;
-    200)
+      # 400 or 500 errors echo"Error calling API" exit 1  ;;     200)                                                                                                     
+                                                             
       # 200: successfully finished
-      echo "Test finished successfully"
+     echo "Test finished successfully"
       exit 0
       ;;
     227|228)
